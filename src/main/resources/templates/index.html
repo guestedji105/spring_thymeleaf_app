@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Products</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div th:switch="${#lists.isEmpty(products)}" class="container">
+    <div class="row">
+        <div class="col">
+            <h2 th:case="true">No products yet!</h2>
+            <div th:case="false">
+                <h2>Products</h2>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>View</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="product : ${products}">
+                        <td th:text="${product.name}"></td>
+                        <td th:text="${product.description}"></td>
+                        <td><a th:href="@{/product/{id}(id=${product.id})}" class="btn btn-primary"><i class="product-view"></i></a></td>
+                        <td><a th:href="@{/edit/{id}(id=${product.id})}" class="btn btn-primary"><i class="product-edit"></i></a></td>
+                        <td><a th:href="@{/delete/{id}(id=${product.id})}" class="btn btn-primary" onclick="return confirm('Are you sure you want to delete this product?')"><i class="product-times"></i></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p><a href="/add" class="btn btn-primary"><i class="product-plus"></i></a></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

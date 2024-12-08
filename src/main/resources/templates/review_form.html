@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Form</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div th:include="home_button :: home_button"></div>
+<div class="container">
+<h2>Add Product Review</h2>
+<div class="row">
+<div class="col">
+<form th:action="@{/products/{productId}/reviews(productId=${productId})}" th:object="${review}" method="POST">
+    <input type="hidden" name="productId" th:value="${productId}">
+
+    <div class="row">
+        <div class="form-group col">
+            <label for="reviewerName" class="col-form-label">Reviewer Name</label>
+            <input type="text" th:field="*{reviewerName}" class="form-control" id="reviewerName" placeholder="Reviewer Name" required>
+            <span th:if="${#fields.hasErrors('reviewerName')}" th:errors="*{reviewerName}" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col">
+            <label for="reviewContent" class="col-form-label">Review</label>
+            <textarea th:field="*{reviewContent}" class="form-control" id="reviewContent" rows="4" placeholder="Review" required></textarea>
+            <span th:if="${#fields.hasErrors('reviewContent')}" th:errors="*{reviewContent}" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col">
+            <label class="col-form-label">Rating</label><br>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" th:field="*{rating}" id="rating1" th:value="1">
+                <label class="form-check-label" for="rating1">1</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" th:field="*{rating}" id="rating2" th:value="2">
+                <label class="form-check-label" for="rating2">2</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" th:field="*{rating}" id="rating3" th:value="3">
+                <label class="form-check-label" for="rating3">3</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" th:field="*{rating}" id="rating4" th:value="4">
+                <label class="form-check-label" for="rating4">4</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" th:field="*{rating}" id="rating5" th:value="5">
+                <label class="form-check-label" for="rating5">5</label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <button type="submit" class="btn btn-primary">Submit Review</button>
+        </div>
+    </div>
+</form>
+</div>
+</div>
+</div>
+</body>
+</html>

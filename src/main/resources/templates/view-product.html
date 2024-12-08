@@ -29,8 +29,39 @@
                     <th>Description:</th>
                     <td th:text="${product.description}"></td>
                 </tr>
+                <tr>
+                    <th>Rating:</th>
+                    <td th:text="${productRating}"></td>
+                </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+</div>
+<div th:switch="${#lists.isEmpty(reviews)}" class="container">
+    <div class="row">
+        <div class="col">
+            <h2>Add Review<a th:href="@{/products/{id}/reviews/add(id=${product.id})}" class="btn btn-primary"><i class="product-review"></i></a></h2>
+            <h2 th:case="true">No reviews yet!</h2>
+            <div th:case="false">
+                <h2>Reviews</h2>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Reviewer name</th>
+                        <th>Review</th>
+                        <th>Rating</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="review : ${reviews}">
+                        <td th:text="${review.reviewerName}"></td>
+                        <td th:text="${review.reviewContent}"></td>
+                        <td th:text="${review.rating}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

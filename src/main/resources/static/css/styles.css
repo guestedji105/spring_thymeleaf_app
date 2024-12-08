@@ -104,6 +104,10 @@ a > i::before {
     background-image: url("../img/f06e.png");
 }
 
+.product-review::before {
+    background-image: url("../img/f005.png");
+}
+
 .home::before {
     width: 50px;
     height: 50px;
@@ -138,4 +142,19 @@ a > i::before {
     .col {
         width: 50%;
     }
+}
+
+/* Review form styles */
+.form-check.form-check-inline {
+    display: inline-table;
+    padding-top: 10px;
+}
+
+#reviewerName {
+    margin-top: 10px;
+}
+
+#reviewContent {
+    width: 100%;
+    margin-top: 10px;
 }
